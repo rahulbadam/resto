@@ -1,0 +1,631 @@
+/*jshint multistr: true */
+/*global jQuery*/
+
+
+/** NEATSHOW single blog and contentbox images **/
+jQuery(function() {
+
+	'use strict';
+
+	jQuery('.single-blogentry img, .woocommerce img').hide();
+	jQuery('.single-blogentry img, .woocommerce img').neatShow();
+});
+
+jQuery('.contentboxbgimage').imagesLoaded( { background: true }, function() {
+
+	'use strict';
+
+	jQuery('.contentboxbgimage').neatShow({ mode: 'container'});
+});
+
+
+	
+/** TABS **************************************************************/
+jQuery('.redsun-tabs').tabs();
+
+// menu tabs
+jQuery('.redsun-tabs a.button').on('click', function(e)  {
+        jQuery('.content-boxes.isotope').isotope('layout');
+	jQuery('.isotope-nested').isotope('layout');
+	jQuery('.menu-isotope .isotope').isotope('layout');
+	e.preventDefault();  
+	Waypoint.refreshAll();
+});
+
+
+
+
+/** LAZY LOAD ****************************************************************/
+	jQuery(document).ajaxStop(function(){
+
+		'use strict';
+
+		jQuery('.lazy').lazyload({
+			effect: 'fadeIn'
+		}).removeClass('lazy');
+	});
+
+	jQuery("img.lazy").lazyload({
+		effect : "fadeIn",
+		threshold : 1200
+	});
+
+
+
+
+/** FADE IN ******************************************************************/
+jQuery(".centered-div .contentbox-content").delay( 1000 ).fadeTo(1000, 1);
+
+
+
+/** DYNAMIC HEIGHTS **********************************************************/
+//Initial load of page
+jQuery(window).on('load',sizeContent);
+	
+//Every resize of window
+jQuery(window).resize(sizeContent);
+	
+//Dynamically assign height and width
+function sizeContent() {
+	
+	'use strict';
+
+	var windowWidth = jQuery(window).width();
+	var windowHeight = jQuery(window).height(); 
+	var wpadmin = jQuery('#wpadminbar').height();
+	var topinfoHeight = jQuery('#topinfo').height();
+	var logonaviHeight = jQuery('#logo-navi-wrap').height();
+	
+	//logo max width        
+	if (jQuery(window).width() < 460) {
+	       jQuery(".logo").css("max-width", windowWidth - 140);
+	}     
+
+	//content boxes height - square     
+	jQuery('.content-box.square').each(function(){
+		var boxmargin = jQuery(this).find('.content-box-inner').data('margin'); 
+		var boxmargin2 = boxmargin * 2;	
+
+		var boxpadding = jQuery(this).find('.contentbox-content').data('padding'); 
+		var boxpadding2 = boxpadding * 2;
+
+		var boxcontentheight = jQuery(this).find('.contentbox-content').height();
+		var totalcontentheight = boxcontentheight + boxpadding2  - boxmargin2 - 24;
+
+		var boxwidth = jQuery(this).width();
+		var totalboxwidth = boxwidth - boxmargin2;
+
+		if (totalcontentheight < totalboxwidth ) {
+		       jQuery(this).addClass( 'use-defined-height centered-content' );
+		} else if (totalcontentheight > totalboxwidth) {
+		       jQuery(this).removeClass( 'use-defined-height centered-content');
+		} 
+	});
+
+
+	//content boxes height - half       
+	jQuery('.content-box.half-height').each(function(){
+		var boxmargin = jQuery(this).find('.content-box-inner').data('margin'); 
+		var boxmargin2 = boxmargin * 2;	
+
+		var boxpadding = jQuery(this).find('.contentbox-content').data('padding'); 
+		var boxpadding2 = boxpadding * 2;
+
+		var boxcontentheight = jQuery(this).find('.contentbox-content').height();
+		var totalcontentheight = boxcontentheight + boxpadding2  - boxmargin2 - 24;
+		var totalcontentheighthalf = totalcontentheight * 2;
+
+		var boxwidth = jQuery(this).width();
+		var totalboxwidth = boxwidth - boxmargin2;
+
+		if (totalcontentheighthalf < totalboxwidth ) {
+		       jQuery(this).addClass( 'use-defined-height centered-content' );
+		} else if (totalcontentheighthalf > totalboxwidth) {
+		       jQuery(this).removeClass( 'use-defined-height centered-content');
+		} 
+	});
+
+
+	//content boxes height - portrait       
+	jQuery('.content-box.one-and-a-half-height').each(function(){
+		var boxmargin = jQuery(this).find('.content-box-inner').data('margin'); 
+		var boxmargin2 = boxmargin * 2;	
+
+		var boxpadding = jQuery(this).find('.contentbox-content').data('padding'); 
+		var boxpadding2 = boxpadding * 2;
+
+		var boxcontentheight = jQuery(this).find('.contentbox-content').height();
+		var totalcontentheight = boxcontentheight + boxpadding2  - boxmargin2 - 24;
+		var oneandahalfheight = totalcontentheight / 1.5;
+
+		var boxwidth = jQuery(this).width();
+		var totalboxwidth = boxwidth - boxmargin2;
+
+		if (oneandahalfheight < totalboxwidth ) {
+		       jQuery(this).addClass( 'use-defined-height centered-content' );
+		} else if (oneandahalfheight > totalboxwidth) {
+		       jQuery(this).removeClass( 'use-defined-height centered-content');
+		} 
+	});
+
+
+	//content boxes height - portrait high       
+	jQuery('.content-box.double-height').each(function(){
+		var boxmargin = jQuery(this).find('.content-box-inner').data('margin'); 
+		var boxmargin2 = boxmargin * 2;	
+
+		var boxpadding = jQuery(this).find('.contentbox-content').data('padding'); 
+		var boxpadding2 = boxpadding * 2;
+
+		var boxcontentheight = jQuery(this).find('.contentbox-content').height();
+		var totalcontentheight = boxcontentheight + boxpadding2  - boxmargin2 - 24;
+		var doubleheight = totalcontentheight / 2;
+
+		var boxwidth = jQuery(this).width();
+		var totalboxwidth = boxwidth - boxmargin2;
+
+		if (doubleheight < totalboxwidth ) {
+		       jQuery(this).addClass( 'use-defined-height centered-content' );
+		} else if (doubleheight > totalboxwidth) {
+		       jQuery(this).removeClass( 'use-defined-height centered-content');
+		} 
+	});
+
+	
+}
+
+
+
+
+/** BACK TOP BUTTON ***********************************************************/
+// hide #back-top first
+jQuery(function() {
+	'use strict';
+	jQuery("#back-top").hide();
+});
+
+// fade in #back-top
+jQuery(function () {
+	'use strict';
+	jQuery(window).scroll(function () {
+		if (jQuery(this).scrollTop() > 600) {
+			jQuery('#back-top').fadeIn();
+		} else {
+			jQuery('#back-top').fadeOut();
+		}
+	});
+
+	// scroll body to 0px on click
+	jQuery('#back-top a').on('click', function () {
+		jQuery('body,html').animate({
+			scrollTop: 0
+		}, 2000, 'easeInOutQuint');
+		return false;
+	});
+});
+
+
+
+/** SLICKNAV RESPONSIVE MENU *****************************************************/
+	jQuery('.primary-menu').slicknav({
+		label: '<i class="toggle-nav fa fa-navicon"></i>',
+		openedSymbol: '',
+		closedSymbol: '',
+		closeOnClick: true,
+		showChildren: false,
+		allowParentLinks: true,
+		prependTo:'#site-navigation-responsive'
+	});
+
+
+
+// DOCUMENT READY
+jQuery(document).ready(function () {
+
+	'use strict';
+	
+
+	/** STICKY TOP *******************************************************/
+	if ( jQuery( ".stickytop" ).length ) {
+		var sticky = new Waypoint.Sticky({
+		  	element: jQuery('.stickytop')[0]
+		})
+	}
+
+
+
+	/** FIT TEXT **********************************************************/
+	// page title
+	var pagetitlesize = jQuery('.page-title').data("max-size"); 
+	var minpagetitlesize = jQuery('.page-title').data("min-size"); 
+	jQuery(".page-title").fitText(1.0, { minFontSize: minpagetitlesize, maxFontSize: pagetitlesize });	
+	// section title
+	var sectiontitlesize = jQuery('.slide-title').css("font-size");
+	var minsectiontitlesize = jQuery('.slide-title').data("min-size"); 
+	jQuery(".slide-title").fitText(1.0, { minFontSize: minsectiontitlesize, maxFontSize: sectiontitlesize });
+	// single blog title
+	var blogtitlesize = jQuery('.single-blog-title').data("max-size"); 
+	var minblogtitlesize = jQuery('.single-blog-title').data("min-size");          
+	jQuery(".single-blog-title").fitText(1.0, { minFontSize: minblogtitlesize, maxFontSize: blogtitlesize });
+
+
+		
+		
+	/** STYLE SELECT BOXES  ***********************************************/
+	jQuery("#sidebar select").selectbox();
+
+
+	/*WooCommerce */     
+	 jQuery(".orderby").selectbox();
+	
+	    
+	      
+	/** OUTLINE BUTTON HOVER COLOR **********************************************/
+	jQuery('.button-outline').on({
+		mouseenter: function() {
+			var jQuerythis = jQuery(this);
+			var colorValue = jQuerythis.data("color"); 
+			var colorValue2 = jQuerythis.data("color2"); 
+			jQuerythis.css('background-color', colorValue);
+			jQuerythis.css('color', colorValue2);
+		}, mouseleave: function() {
+			var jQuerythis = jQuery(this);
+			var colorValue = jQuerythis.data("color"); 
+			jQuerythis.css('background-color', 'transparent');
+			jQuerythis.css('color', colorValue);
+		}
+	});
+
+
+	/** REGULAR BUTTON HOVER COLOR **********************************************/
+	jQuery('.button-regular').on({
+		mouseenter: function() {
+			var jQuerythis = jQuery(this);
+			var hoverColor = jQuerythis.data("hover-color");
+			jQuerythis.css('background-color', hoverColor );
+		}, mouseleave: function() {
+			var jQuerythis = jQuery(this);
+			var colorValue = jQuery(this).data("color"); 
+			jQuerythis.css('background-color', colorValue);
+		}
+	});
+
+
+
+
+	/** RESPONSIVE VIDEOS *************************************************/
+	jQuery("#wrapper").fitVids();
+
+
+
+
+	/** SUPERFISH NAVIGATION **********************************************/
+	if (jQuery().superfish) {
+		    jQuery('ul.sf-menu').superfish({
+			     autoArrows: true, // arrow mark-up
+			     dropShadows: false, // drop shadows                        
+			     animationOpen:    {height:'show'},
+			     animationClose:    {height:'hide',opacity:'hide'},
+			     delay:        200,
+			     speed:        200
+		    });
+	}
+	
+	jQuery('ul.sf-menu li').on({
+		mouseenter: function() {
+			jQuery(this).addClass('sfHover');
+		}, mouseleave: function() {
+			jQuery(this).removeClass('sfHover');
+		}        
+	});
+
+
+
+	/** PARALLAX *********************************************************/
+	jQuery(window).stellar({
+		horizontalOffset: 48,
+		verticalOffset: 48,
+			horizontalScrolling: false,
+			verticalScrolling: true,
+			hideDistantElements: true
+	});
+
+
+
+
+	/** SELECT MENU FOR SMALLER SCREENS ***********************************/
+	jQuery( ".responsive-menu, .mobile-menu" ).change(
+	    function() {
+		window.location = jQuery(this).find("option:selected").val();
+	    }
+	);
+
+	jQuery(".responsive-menu option, .mobile-menu option").each(function () {
+	    if (jQuery(this).val() === window.location.toString()) {
+		jQuery(this).prop('selected', true);
+	    }
+	});
+   
+
+   
+	
+	/** HIDE EMPTY SPAN (used for Reply Button in Comments) ***************/
+	jQuery('.commentlist span:empty').remove();
+	       
+		
+     
+
+	/**  PRETTYPHOTO LIGHTBOX *********************************************/
+	if (jQuery().prettyPhoto) {
+		jQuery("a[data-rel^='prettyPhoto']:not(a.isotope-hidden)").prettyPhoto({
+			animation_speed: 'fast', // fast/slow/normal 
+			slideshow: false, // false OR interval time in ms 
+			autoplay_slideshow: false, // true/false 
+			opacity: 0.90, // Value between 0 and 1 
+			show_title: false, // true/false 
+			allow_resize: true, // Resize the photos bigger than viewport. true/false 
+			default_width: 840,
+			default_height: 840,
+			deeplinking: false,
+			overlay_gallery: false,
+			counter_separator_label: '/', // The separator for the gallery counter 1 "of" 2
+			theme: 'red_sun', // light_rounded / dark_rounded / light_square / dark_square / facebook
+			horizontal_padding: 20, // The padding on each side of the picture 
+			autoplay: true, // Automatically start videos: True/False
+			markup: '<div class="pp_pic_holder"> \
+						<div class="ppt">&nbsp;</div> \
+						<div class="pp_top"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+						<div class="pp_content_container"> \
+							<div class="pp_left"> \
+							<div class="pp_right"> \
+								<div class="pp_content"> \
+									<div class="pp_loaderIcon"></div> \
+									<div class="pp_fade"> \
+										<div id="resizetoggle"> \
+										<a href="#" class="pp_expand"> \
+											<i class="fa fa-expand"></i>  \
+											<i class="fa fa-compress"></i> \
+										</a> \
+										</div> \
+										<div class="pp_hoverContainer"> \
+											<a class="pp_next" href="#"><div class="pp_next_inner"><span class="pe-7s-angle-left"></span></div></a> \
+											<a class="pp_previous" href="#"><div class="pp_previous_inner"><span class="pe-7s-angle-right"></span></div></a> \
+										</div> \
+										<div id="pp_full_res"></div> \
+										<div class="pp_details"> \
+											<div class="pp_nav"> \
+												<a href="#" class="pp_arrow_previous"><span class="pe-7s-angle-left"></span></a> \
+												<p class="currentTextHolder">0/0</p> \
+												<a href="#" class="pp_arrow_next"><span class="pe-7s-angle-right"></span></a> \
+											</div> \
+											<p class="pp_description"></p> \
+											{pp_social} \
+											<a class="pp_close" href="#"><i class="pe-7s-close"></i></a> \
+										</div> \
+									</div> \
+								</div> \
+							</div> \
+							</div> \
+						</div> \
+						<div class="pp_bottom"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+					</div> \
+					<div class="pp_overlay"></div>',
+			social_tools: false
+		});
+	}
+
+	if (jQuery().prettyPhoto) {
+		jQuery("a[data-rel^='prettyPhoto-video']").prettyPhoto({
+			animation_speed: 'fast', // fast/slow/normal 
+			slideshow: false, // false OR interval time in ms 
+			autoplay_slideshow: false, // true/false 
+			opacity: 0.90, // Value between 0 and 1 
+			show_title: false, // true/false 
+			allow_resize: true, // Resize the photos bigger than viewport. true/false 
+			default_width: 840,
+			default_height: 540,
+			deeplinking: false,
+			counter_separator_label: '/', // The separator for the gallery counter 1 "of" 2
+			theme: 'red_sun', // light_rounded / dark_rounded / light_square / dark_square / facebook
+			horizontal_padding: 20, // The padding on each side of the picture 
+			autoplay: true, // Automatically start videos: True/False
+			markup: '<div class="pp_pic_holder"> \
+						<div class="ppt">&nbsp;</div> \
+						<div class="pp_top"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+						<div class="pp_content_container"> \
+							<div class="pp_left"> \
+							<div class="pp_right"> \
+								<div class="pp_content"> \
+									<div class="pp_loaderIcon"></div> \
+									<div class="pp_fade"> \
+										<div id="resizetoggle"> \
+										<a href="#" class="pp_expand"> \
+											<i class="fa fa-expand"></i>  \
+											<i class="fa fa-compress"></i> \
+										</a> \
+										</div> \
+										<div class="pp_hoverContainer"> \
+											<a class="pp_next" href="#"><div class="pp_next_inner"><span class="pe-7s-angle-left"></span></div></a> \
+											<a class="pp_previous" href="#"><div class="pp_previous_inner"><span class="pe-7s-angle-right"></span></div></a> \
+										</div> \
+										<div id="pp_full_res"></div> \
+										<div class="pp_details"> \
+											<div class="pp_nav"> \
+												<a href="#" class="pp_arrow_previous"><span class="pe-7s-angle-left"></span></a> \
+												<p class="currentTextHolder">0/0</p> \
+												<a href="#" class="pp_arrow_next"><span class="pe-7s-angle-right"></span></a> \
+											</div> \
+											<p class="pp_description"></p> \
+											{pp_social} \
+											<a class="pp_close" href="#"><i class="fa fa-times"></i></a> \
+										</div> \
+									</div> \
+								</div> \
+							</div> \
+							</div> \
+						</div> \
+						<div class="pp_bottom"> \
+							<div class="pp_left"></div> \
+							<div class="pp_middle"></div> \
+							<div class="pp_right"></div> \
+						</div> \
+					</div> \
+					<div class="pp_overlay"></div>',
+			social_tools: false
+		});
+	}
+
+
+}); // END DOCUMENT READY
+
+
+
+
+
+// WINDOW LOAD
+jQuery(window).on('load', function () {
+	
+	'use strict';
+
+	/** ISOTOPE *****************************************************************************/
+
+	jQuery( function() {
+		
+			/* Isotope nested */
+			var jQuerygridnested = jQuery('.isotope-nested').isotope({
+				itemSelector: '.isotope-box-nested',
+				percentPosition: true,
+				transitionDuration: 0,
+				masonry: { columnWidth: '.grid-sizer-nested' }
+			});
+			// layout Isotope after each image loads
+			jQuerygridnested.imagesLoaded().progress( function() {
+					jQuerymenugrid.isotope('layout');
+					Waypoint.refreshAll();
+			});						  
+			/* End Isotope nested */	
+
+			/* Isotope Menu Container */
+			var jQuerymenugrid = jQuery('.menu-isotope .isotope').isotope({
+					itemSelector: '.isotope-box',
+					transitionDuration: 0,
+					percentPosition: true,
+					masonry: { columnWidth: '.grid-sizer' }
+			});	
+			// layout Isotope after each image loads
+			jQuerymenugrid.imagesLoaded().progress( function() {
+					jQuerymenugrid.isotope('layout');
+					Waypoint.refreshAll();
+			});						  
+			/* End Isotope Menu Container */	  
+
+
+			/* Isotope General */
+			var jQuerygrid = jQuery('.isotope').isotope({
+					itemSelector: '.isotope-box',
+					percentPosition: true,
+					transitionDuration: 0,
+					masonry: { columnWidth: '.grid-sizer' }
+			});
+			// layout Isotope after each image loads
+			jQuerygrid.imagesLoaded().progress( function() {
+					jQuerygrid.isotope('layout');
+					Waypoint.refreshAll();
+			});	
+			/* End Isotope General */
+
+
+
+
+
+		  
+	});
+
+
+
+
+
+
+
+	
+	/**  SMOOTH / NAVIGATION SCROLL FOR SECTION BUTTONS **************************/
+	jQuery('#topnavi a[href*="#"]:not([href="#"]), .sectionbuttons a[href*="#"]:not([href="#"]), .page-template-template-frontpage a.button[href*="#"]:not([href="#"]):not(.menu-tab-button)').on('click', function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = jQuery(this.hash);
+			target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+			if (target.length) {
+				jQuery('html,body').animate({
+				scrollTop: target.offset().top - 48
+				}, 1000);
+				return false;
+			}
+		}
+	});
+	//home button only
+	jQuery('.sf-menu li:first-child a').on('click', function() {
+		if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			var target = jQuery(this.hash);
+			target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+			if (target.length) {
+				jQuery('html,body').animate({
+					scrollTop: target.offset().top - 148
+				}, 1000);
+				return false;
+			}
+		}
+	});
+
+
+
+	/* PREVENTS ANCHOR JUMP TO WRONG POSITION *****************************/
+	var hash = window.location.hash;
+	if(hash){
+		jQuery(document).scrollTop( jQuery(hash).offset().top - 72 );
+
+		// remove anchor http://stackoverflow.com/questions/5928435/append-remove-anchor-name-from-current-url-without-refresh
+		//location.hash = '';
+
+		// remove hash http://stackoverflow.com/questions/15322917/clearing-url-hash
+		//history.pushState('', document.title, window.location.pathname);
+	}
+
+
+	/* NAVIGATION HIGHLIGHT ****************************************************/
+	var waypointsdown = jQuery('.slide').waypoint(function(direction) {
+		if (direction === 'down') {
+			var navclass = jQuery(this.element).attr('id');
+			jQuery('.sf-menu a').removeClass('active');
+			jQuery('.sf-menu a.' + navclass).addClass('active');
+		}
+	}, 
+	{offset: 96 });
+
+	var waypointsup = jQuery('.slide').waypoint(function(direction) {
+		if (direction === 'up') {
+			var navclass = jQuery(this.element).attr('id');
+			jQuery('.sf-menu a').removeClass('active');
+			jQuery('.sf-menu a.' + navclass).addClass('active');
+		}
+	},
+	{
+                offset: function() { 
+                	return -jQuery(this.element).height() / 2; 
+                }
+
+        });
+
+	
+		
+}); // END WINDOW LOAD

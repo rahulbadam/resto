@@ -1,0 +1,90 @@
+/*!
+ * SlickNav Responsive Mobile Menu v1.0.10
+ * (c) 2016 Josh Cope
+ * licensed under MIT
+ */
+
+
+#site-navigation-responsive,
+.slicknav_menu {
+	z-index: 9999;
+	}
+
+.slicknav_menu {
+	position: relative;
+	}
+
+.slicknav_menu .slicknav_icon {
+	display: none;
+	}
+
+.slicknav_btn {
+	position: absolute;
+	top: -53px;
+	right: 24px;
+	cursor: pointer; 
+	overflow: hidden;
+	padding: 0;
+	}
+ 
+.slicknav_menu i.toggle-nav {
+	font-size: 33px;
+	color: #101020;
+	}
+
+.slicknav_nav {
+	position: absolute;
+	right: 0;
+	float: right;
+	text-align: right;
+	margin: 0;
+	background: #121416;
+	width: 280px;
+	//max-height: 400px;
+	overflow-y: scroll;
+	box-sizing: border-box;
+	padding: 12px 24px 24px;
+	
+	}
+
+.slicknav_nav li {
+	list-style-type: none;
+	margin: 0;
+	}
+
+.slicknav_nav .slicknav_row,
+.slicknav_nav a {
+	display: block; 
+	}
+
+.slicknav_menu  .slicknav_nav a {
+	color: #fff;
+	text-transform: uppercase;
+	padding: 12px 0 12px 24px;
+	text-decoration: none;
+	letter-spacing: 3px;
+	text-align: right;
+	font-size: 12px;
+	line-height: 18px;	
+	}
+
+
+/* submenu */
+.slicknav_nav ul.sub-menu {
+	margin: 0 24px 0 0;
+	}
+
+.slicknav_nav .slicknav_item {
+	cursor: pointer; 
+	}
+
+.slicknav_nav .slicknav_item a {
+	display: inline; 
+	}
+
+.slicknav_nav li.menu-item-has-children > a:after { /* arrow down */
+	content: "\f107";
+	padding-left: 4px;
+    	font-family: FontAwesome;
+    	white-space: nowrap;
+	}

@@ -1,0 +1,248 @@
+/* 
+-------------------------------------------
+	SHORTCODES 
+-------------------------------------------
+	1.  Columns
+	2.  Dropcaps
+	3.  Pullquotes
+	4.  Highlight	
+	5.  Divider
+	6.  Tabs
+	7.  Toggle
+	8.  Buttons
+	8.  Round Image
+-------------------------------------------
+*/
+
+
+/* 1. Columns */
+.one_half { width: 48%; }
+.one_third { width: 30.66%; }
+.two_third { width: 65.33%; }
+.one_fourth { width: 22%; }
+.three_fourth { width: 74%; }
+.one_fifth { width: 16.8%; }
+.two_fifth { width: 37.6%; }
+.three_fifth { width: 58.4%; }
+.four_fifth { width: 79.2%; }
+.one_sixth { width: 13.33%; }
+.five_sixth { width: 82.67%; }
+
+.one_half,
+.one_third,
+.two_third,
+.three_fourth,
+.one_fourth,
+.one_fifth,
+.two_fifth,
+.three_fifth,
+.four_fifth,
+.one_sixth,
+.five_sixth 
+	{
+	position: relative;
+	margin: 0;
+	margin-right: 4%;
+	float: left;
+	}
+
+.last	{
+	margin-right: 0!important;
+	clear: right;
+	}
+
+.clearboth {
+        clear:both;
+        display:block;
+        font-size:0;
+        height:0;
+        line-height:0;
+        width:100%;
+        }
+
+
+/*  2. Dropcaps */
+.dropcap {
+    color: #1a1c1e;
+    display: block;
+    position: relative;    
+    float: left;
+    padding-top: 0;    
+    font-size: 93px;
+    line-height: 79px;
+    margin: 0 8px -4px 0;
+    }
+
+
+/*  3. Pullquotes */
+.pullquote_left, 
+.pullquote_right {     	
+        padding: 24px;
+        font-size: 16px;
+        font-weight: 100;
+        line-height: 30px;
+        top: -2px;
+        position: relative;
+        clear: none;
+        width: 30%;    	
+	background-color: #f4f4f4;
+        color: #888; 
+        text-transform: uppercase;
+        letter-spacing: 3px;
+	} 
+
+.isotope-box .pullquote_left, 
+.isotope-box .pullquote_right {     	
+        width: auto;
+        margin: 25px 0;
+	} 
+
+.pullquote_left {    
+        float: left;
+        text-align: left;        
+        margin: 25px 25px 25px 0;
+        }
+	
+.pullquote_right {    
+        float: right;
+        text-align: right;
+        margin: 25px 0 25px 25px;
+        }
+
+
+/*  4. Highlight */
+.highlight1,
+.highlight2 {
+        padding: 0 2px;
+	}
+
+.highlight1 {
+        color: #181A1C;
+	}
+
+.highlight2 {
+    	color: #fff;
+	}
+
+
+/*  5. Divider */
+.divider_hr,
+.divider2_hr {
+        clear:both;
+        display:block;
+        margin-bottom:87px;
+        }
+
+.divider_hr {
+        width:100%;
+        border-bottom: 4px solid #ddd;
+        padding-top: 60px;
+        }
+
+.divider2_hr {
+        width:60px;
+        border-bottom: 2px solid #ddd;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 58px;
+        }
+
+/*  6. Tabs */
+.redsun-tabs.ui-tabs .ui-tabs-hide {
+	position: absolute;
+	left: -9999px;
+	display: none;
+	}
+
+.redsun-tabs {
+	background: none;
+	margin: 24px 0;
+	}
+
+.redsun-tabs ul.redsun-nav {
+	list-style: none;
+	margin: 0 !important;
+	padding: 0;
+	background: none;
+	border: 0;
+	float: none;
+	left: auto;
+	position: relative;
+	text-align: center;
+	}
+
+.redsun-tabs .redsun-nav li {
+	position: relative;
+	display: inline;
+	right: auto;
+	margin: 0 4px 0 0;
+	z-index: 10;
+	list-style: none;
+	}
+
+.redsun-tabs .redsun-nav li a {
+	color: #aaa; 
+        line-height: 25px;
+        margin: 0 12px;
+        overflow: hidden;
+        padding: 4px 0 0;
+        position: relative;
+	height: 26px;
+	text-decoration: none;
+	font-weight: 600;
+	letter-spacing: 1.2px;
+	display: inline-block;
+	border-bottom: 2px solid transparent;
+	}
+
+.redsun-tabs .redsun-nav li.ui-tabs-active a {
+	color: #4a4c4e; 
+	border-bottom: 2px solid;
+	}  
+
+.redsun-tabs .redsun-tab {
+	clear: both;
+	display: block;
+	} 
+        
+
+/* 7. Toggle */
+.trigger {
+        cursor: pointer;
+	}
+
+.trigger i {
+        width: 18px;
+	}
+
+.trigger a,
+.trigger a:link,
+.trigger a:focus, 
+.trigger a:active {
+        color: #303033 !important; 
+	}
+
+.trigger h6 {
+        display: inline;    
+        margin: 0;  
+	}
+
+
+.toggle_container {
+        margin: 0;
+        padding: 24px;
+        overflow: hidden;
+        clear: both;
+        }
+         
+.toggle_container .block {
+        margin: 0;             
+        overflow: hidden;
+        }
+
+   
+        
+/*  9. Round Image */
+.round-image img{
+	border-radius: 999px;
+	}
